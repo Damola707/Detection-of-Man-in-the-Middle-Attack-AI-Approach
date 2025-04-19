@@ -1,0 +1,6 @@
+
+Training completed: 2025-04-19 13:57:21.920934
+Accuracy: 0.9992
+Recall: 0.9997
+Precision: 0.9989
+F1 Score: 0.9993

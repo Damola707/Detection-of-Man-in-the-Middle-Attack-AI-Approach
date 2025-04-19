@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MITM Alert Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+        h1 {
+            color: #222;
+            text-align: center;
+        }
+        table {
+            margin: 0 auto;
+            width: 90%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 14px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #222;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .no-alerts {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live MITM Attack Alerts</h1>
+
+    {% if alerts %}
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Timestamp</th>
+            <th>Alert Message</th>
+        </tr>
+        {% for alert in alerts %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ alert.split('|')[0].strip('[] ') }}</td>
+                <td>{{ alert.split('|', 1)[1].strip() }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p class="no-alerts">No alerts yet.</p>
+    {% endif %}
+</body>
+</html>

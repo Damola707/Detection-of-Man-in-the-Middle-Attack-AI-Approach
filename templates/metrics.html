@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Metrics</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { text-align: center; }
+        .metrics-table { margin-top: 20px; width: 100%; }
+        .metrics-table th, .metrics-table td { padding: 10px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>Model Performance Metrics</h1>
+    
+    <h2>Confusion Matrix</h2>
+    <img src="data:image/png;base64,{{ cm_img }}" alt="Confusion Matrix" style="display: block; margin: 0 auto;">
+    
+    <h2>Metrics</h2>
+    <table class="metrics-table">
+        <tr>
+            <th>Accuracy</th>
+            <td>{{ accuracy }}</td>
+        </tr>
+        <tr>
+            <th>Precision</th>
+            <td>{{ precision }}</td>
+        </tr>
+        <tr>
+            <th>Recall</th>
+            <td>{{ recall }}</td>
+        </tr>
+        <tr>
+            <th>F1-Score</th>
+            <td>{{ f1_score }}</td>
+        </tr>
+    </table>
+</body>
+</html>
