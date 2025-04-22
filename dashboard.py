@@ -11,7 +11,10 @@ def index():
         alerts = []
     else:
         with open(ALERTS_FILE, 'r') as f:
-            alerts = json.load(f)
+            try:
+                alerts = json.load(f)
+            except json.JSONDecodeError:
+                alerts = []
     return render_template("dashboard.html", alerts=alerts)
 
 if __name__ == '__main__':

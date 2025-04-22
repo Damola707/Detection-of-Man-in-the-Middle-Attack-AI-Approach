@@ -10,16 +10,9 @@ from datetime import datetime
 import json
 import os
 
-# Load model and scaler
-# Load trained Decision Tree model and StandardScaler
-# These were saved after training on the labeled UNSW-NB15 dataset
-
-model = joblib.load("random_forest_model.pkl")
-scaler = joblib.load("scaler.pkl")\
-    
-# Simulated real-time detection:
-# In practice, this would be a packet or flow feature vector extracted in real-time (e.g., via scapy or tshark)
-# The features must be preprocessed exactly like the training data
+# Load model and scaler trained with 5 features only
+model = joblib.load("model_5f.pkl")  # make sure this was trained with 5 features
+scaler = joblib.load("scaler_5f.pkl")
 
 ALERTS_FILE = "alerts.json"
 
@@ -57,8 +50,6 @@ def extract_features(pkt):
         ]
     return None
 
-# Perform inference to detect if the current traffic is normal or a potential MITM attack
-# Based on the AI model's decision boundary learned during training
 def predict_packet(pkt):
     features = extract_features(pkt)
     if features:
@@ -71,8 +62,6 @@ def predict_packet(pkt):
                 write_alert_to_file(alert_msg)
         except Exception as e:
             print(f"Prediction error: {e}")
-            
-# Log the results to simulate real-time intrusion alerts
-# In an actual deployment, this would trigger a security event or alert
+
 print("[+] Sniffing started...")
 sniff(prn=predict_packet, store=0)

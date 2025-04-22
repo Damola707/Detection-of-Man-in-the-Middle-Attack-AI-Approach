@@ -10,7 +10,7 @@ alert_data = []
 # Basic route to display alerts
 @app.route('/')
 def index():
-    return render_template('index.html', alerts=alert_data)
+    return render_template('dashboard.html', alerts=alert_data)
 
 def start_flask():
     app.run(debug=True, use_reloader=False)  # Avoid double-running in threading
